@@ -1,5 +1,14 @@
-list = [10, 20, 30, 40]
-i = 0 
-while(i<4):
-    print(list[i])
-    i = i +1
+import requests
+
+api_key = "your_api_key_here"
+url = f"http://api.openweathermap.org/data/2.5/weather?q=CityName&appid={api_key}"
+
+response = requests.get(url)
+
+if response.status_code == 200:
+    # Process the data from the API response
+    data = response.json()
+    print(data)
+else:
+    # Handle the error
+    print(f"Error: {response.status_code}, {response.json()}")
